@@ -1,0 +1,78 @@
+{% extends 'admin/host_admin.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1 class="text-center" style="color: #01E1B8;">Activated Wedding Planners </h1>
+          <table class="table mt-5 table-hover table-bordered table-sm text-center">
+            <thead>
+              <tr>
+                <th>s.no</th>
+                <th>organizer Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                {% for v in organizer %}
+                {% if v.is_active == True %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ v.full_name }} </td>
+                    <td class="btn-group me-2">
+                      <form action="" method="post">
+                        {% csrf_token %}
+    
+                        <input type="hidden" name="oid" value="{{ v.id }}" />
+                        <button type="submit" value="deactivate" name="submit" class="btn btn-outline-danger" >Deactivate</button>
+    
+                      </form>
+                    </td>
+                  </tr>
+                  {% endif %}
+                {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <h1 class="text-center" style="color: #01E1B8;">Deactivated Wedding Planners </h1>
+          <table class="table mt-5 table-hover table-bordered table-sm text-center">
+            <thead>
+              <tr>
+                <th>s.no</th>
+                <th>organizer Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                {% for v in organizer %}
+                {% if v.is_active == False %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ v.full_name }} </td>
+                    <td class="btn-group me-2">
+                      <form action="" method="post">
+                        {% csrf_token %}
+    
+                        <input type="hidden" name="oid" value="{{ v.id }}" />
+                        <button type="submit" value="activate" name="submit" class="btn btn-outline-success" >Activate</button>
+    
+                      </form>
+                    </td>
+                  </tr>
+                  {% endif %}
+                {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+{% endblock %}

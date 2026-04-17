@@ -1,0 +1,218 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Wedding final </title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static '/css/style-starter.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}" >
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet">
+    <style>
+        .w3l-main-slider {
+            background-image: url('assets/images/1.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            height: auto;
+            width: auto;
+          }
+          .carousel-caption{
+            top:35%;
+            
+          }
+    </style>
+</head>
+
+<body id="home">
+    <script src="{% static "js/jquery-3.3.1.min.js"%}" ></script> <!-- Common jquery plugin -->
+    <!--bootstrap working-->
+    <script src="{% static "js/bootstrap.min.js"%}" ></script>
+    <!-- //bootstrap working-->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    
+
+    <section class=" w3l-header-4 header-sticky">
+        <header class="absolute-top">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <h3><a class="navbar-brand" href="/" style="font-size:10px; font-style:Lobster;"> <span
+                                aria-hidden="true"></span>
+                            <center><img src="{% static "images/loga1.png" width="30px" height="30px"%}" ></center>
+                            <h1 style="font-size: 30px; color: #01E1B8;"><strong>WED</strong>Planpro</h1>
+                            <span style="color:#01E1B8"></span>
+                        </a></h3>
+                    <!-- <h5 style="color:#e7b829">The Event planners</h5> -->
+                    <button class="navbar-toggler bg-gradient collapsed" type="button" data-toggle="collapse"
+                        data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="fa icon-expand fa-bars"></span>
+                        <span class="fa icon-close fa-times"></span>
+    
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/" >Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link">Services <span class="fa fa-sort-desc"></span></a>
+                               
+                                <ul>
+                                    {% for s in service%}
+                                    <li>
+                                        <a href='/service'>
+                                            <span  class="text">{{s.cat_name}}</span>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Contact">Contact</a>
+                            </li>
+                        </ul>
+                        <a href="/bothlogin" class="ml-lg-3 mt-lg-0 mt-3 book btn btn-style">Member Registration</a>
+                    </div>
+            </div>
+    
+            </nav>
+            </div>
+        </header>
+    </section>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="assets/images/banner.webp" alt="First slide" style="height:600px;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="font-size: 2.8em; font-weight: 800;">LOGIN YOUR ACCOUNT ORGANIZER </h5>
+                <p style="font-weight: 800;">Designing dreams, planning perfection. Your wedding, our expertise<br>Events with impact, memories that last. Trust us to plan your extraordinary moment.</p>
+                <button class="btn btn-lg text-light mt-2 btn-warning"><a class="text-light" href="/Organizer/org_login/">  Organizer Login</a> </button>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="assets/images/banner.webp" alt="Second slide" style="height:600px;">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="font-size: 2.8em; font-weight: 800;">LOGIN YOUR ACCOUNT CUSTOMER </h5>
+                <p style="font-weight: 800;">Make your day special with best Designer , planning perfection. Your wedding, our expertise. Events with impact, memories that last. Trust us to plan your extraordinary moment.</p>
+                <button class="btn btn-lg text-light mt-2 btn-warning" ><a class="text-light" href="/Customer/cust_login/" style="font-weight: 800,font-size: 2.8em;">  Customer Login</a> </button>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+     <section class="service-type">
+        <div class="container">
+        </div>
+     </section>
+    </div>
+  
+<section class="w3l-footer-29-main">
+    <div class="footer-29 py-5">
+        <div class="container">
+            <div class="row footer-top-29">
+                <div class="col-lg-5 col-md-5 col-sm-6 footer-list-29 footer-1">
+                    <div class="left-side">
+                        <h2><a href="/" class="footer-logo"><strong>WED</strong>Planpro</a></h2>
+                        <p class="para">Each and every event as her own perspective collborate nature. That will makes happy the people and touch the <br>glow and smile with heartly </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
+
+                    <ul>
+                        <h6 class="footer-title-29">Useful Links</h6>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/service">Services</a></li>
+                        <li><a href="/Contact">Contact us</a></li>
+                        <li><a href="/adminLogin">Admin Login</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-3">
+                    <h6 class="footer-title-29">Latest from blog</h6>
+                    <div class="footer-post mb-3">
+                        <a href="/">
+                            <img src="{% static "images/wedding.jpeg" class="img-responsive" alt="" %}" ></a>
+                        <div>
+                            <a href="#page">Decorate on this way</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> March 9, 2023</p>
+                        </div>
+                    </div>
+                    <div class="footer-post">
+                        <a href="/">
+                            <img src="{% static "images/wedding1.jpeg" class="img-responsive" alt="" %}"  >
+                        </a>
+                        <div>
+                            <a href="/">Decorate on this way</a>
+                            <p class="small"><span class="fa fa-clock-o"></span> March 9, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<section class="w3l-footer-29-main w3l-copyright">
+    <div class="container">
+        <div class=" bottom-copies text-center">
+            <p class="copy-footer-29">2024 WEDPlanpro. All rights reserved | Designed by SGM Students
+                <!-- <a href="https://w3layouts.com">W3layouts</a> -->
+                </p>
+        </div>
+    </div>
+</section>
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+    <span class="fa fa-long-arrow-up"></span>
+</button>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- /move top -->
+</body>
+
+</html>

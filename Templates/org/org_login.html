@@ -1,0 +1,176 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Contact</title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'css/style-starter.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet">
+  </head>
+  <body id="home">
+    
+<script src="{% static 'js/jquery-3.3.1.min.js'%}"></script> <!-- Common jquery plugin -->
+<!--bootstrap working-->
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+<!-- //bootstrap working-->
+<!-- disable body scroll which navbar is in active -->
+
+<!--endHeader-->
+
+<!-- breadcrumbs -->
+
+<section class="w3l-inner-banner-main">
+    <div class="about-inner contact editContent">
+        <div class="container">   
+            <div class="main-titles-head">
+            <h3 class="header-name editContent">
+                
+  Login
+            </h3>
+            <p class="tiltle-para editContent">Designing success, orchestrating efficiency. Your business, our expertise. Register now and unlock the path to extraordinary results</p>
+        </div>
+        <div class="breadcrumbs-sub">
+            <ul class="breadcrumbs-custom-path">
+                <li class="right-side propClone"><a href="/" class="editContent">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
+                <li class="active editContent">
+                    Oranizer Login</li>
+            </ul>
+            </div>
+</div>
+</div>
+
+    </div>
+</section>
+ <main>
+        <div class="container p-5" style="background-color: white;">
+            <div class="row justify-content-center">
+                <div class="col-md-5 py-5 px-0">
+                    <img src="{% static 'images/side1.jpg' %}" style="height:600px; width:500px; border-radius:1px; opacity:1px">
+                </div>
+                <div class="col-md-5 px-0 py-5">
+                    <div class="card rounded-lg" style=" border-radius:none; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+                        <div class="card-header border-0 bg-transparent"><h3 class="text-center font-weight-light my-4">
+                            <i class="bi bi-person-circle" style="font-size:2.5em; padding-bottom:20px;"></i>
+                        {% comment %} <img src="{% static 'images/loga1.png' %}" width="200px" height="70px">  {% endcomment %}
+                        {% comment %} <label class= style="font-weight:600; font-size:1.9em; ">Login</label> {% endcomment %}
+                      </div> 
+                        <div class="card-body" style="height:550px;">
+                            <form class="form" action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% include 'mainweb/alert.html' %}
+                        
+                                <div class=" mb-4">
+                                  <label for="username" style="float:left; font-size:1.2em;font-weight:100">Username</label>
+                                  <input class="form-control" type="text" name="username" placeholder="Enter Username" autocomplete="off" />
+                                 
+                              </div>
+                                <div class="mb-3">
+                                  <label for="password" style="float:left; font-size:1.2em;font-weight:100">Password</label>
+                                    <input class="form-control" type="password" name="password" placeholder="Enter Password" autocomplete="off" />
+                                    <a href="/Organizer/org_forgetPass" style="text-align:center;font-size:1.0em;font-weight:200; color:#01E1B8 " class="mt-5">Forgot Password</a>
+                                </div>
+                              
+                                <div class=" mb-0"> 
+                                    <button class="d-grid btn btn-block text-decoration-none" type="submit" name="submit" value="Login" style="background-color:#01E1B8">Login</button>
+                                </div>
+                            </form>
+                            <div class="card-footer p-1 bg-transparent text-center py-3">
+                                <div class="justify-content-center text-center">
+                                    <label>Don't Have an Account?</label>
+                                    <a href="/Organizer/org_register" style="color:#01E1B8">Register</a>
+                                <br><label>Are you customer?</label>
+                                <a  href="/Customer/cust_login"> Customer Login</a>
+                                
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+                        </div> 
+                        
+                        
+                        {% comment %} <div class="card-footer bg-light border-0 text-center py-3">
+                            <div class="justify-content-center text-center">
+                                <label style="float:left; font-size:1.2em;font-weight:100">Don't Have an Account?</label>
+                                <a href="/Organizer/org_register" style="float:left; font-size:1.2em;font-weight:100; color:#01E1B8">  Register</a>
+                            </div>
+                            <div class="justify-content-center text-center">
+                                <label style="margin-bottom:0.0rem;">Are you customer?</label>
+                    
+                                <button class="btn btn-primary" >Customer login
+                                </button>
+                            </div>
+                            {% comment %} <div class="small" style=" font-size:1.2em; font-weight:100"><a href="#">Welcome Back..!</a></div> {% endcomment %}
+                        {% comment %} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> {% endcomment %}  
+    {% comment %} <body>
+        <main style="background-color: hsl(0, 0%, 96%)">
+            <div class="container p-5" style="background-color: white;">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card rounded-lg mt-5" style="box-shadow: rgba(0, 0, 0, 0.20) 0px 1px 4px;">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">
+                              <img src="{% static 'images/loga1.png' %}" width="400px" height="110px"></div>
+                            <div class="card-body">
+                                <form class="form" action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% include 'mainweb/alert.html' %}
+                            
+                                    <div class=" mb-3">
+                                      <label for="username">Username</label>
+                                      <input class="form-control" type="text" name="username" placeholder="Enter Username" autocomplete="off" />
+                                     
+                                  </div>
+                                  <div class=" mb-3">
+                                    <label for="password">Password</label>
+                                      <input class="form-control" type="password" name="password" placeholder="Enter Password" autocomplete="off" />
+                                      <a href="/Customer/cust_forgetPass" style="color:#01E1B8" class=" mt-5">Forgot Password</a>
+                                  </div>           <div class="mt-4 mb-0"> 
+                                    <button class="d-grid btn btn-block text-decoration-none" type="submit" name="submit" value="Login" style="background-color:#01E1B8">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center py-3">
+                            <div class="justify-content-center text-center">
+                                <label>Don't Have an Account?</label>
+                                <a href="/Customer/cust_register" style="color:#01E1B8">Register</a>
+                            </div><div class="small"><a href="#" style="color:#01E1B8">Welcome Back..!</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> {% endcomment %}
+    
+
+    
+    <script src="{% static "js/script.js" %}"></script>
+    <script src="{% static "js/particles.min.js.js" %}"></script>
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    
+    <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    
+    <script src="{% static "js/owl.carousel.js" %}"></script>
+    <script src="{% static "js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <!-- Core plugin JavaScript -->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <!-- Custom scripts for all pages -->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script> 
+    <style>
+        .btn-primary {
+            color: #000;
+            background-color: #00B98E;
+            border-color: #00B98E;
+        }
+        a {
+color: #00B98E;
+text-decoration: none;
+}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  </head>
+
+  <body style="background-color: hsl(0, 0%, 96%)">
+    <!-- Section: Design Block -->
+    <section class="">
+      <div class="col-5 mx-auto mt-5">
+        <div class="card" style="height:auto; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; border: 2px;">
+            <div class="row p-1 py-4">
+                <div class="col-md-12 justify-content-center">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 py-1 text-center">
+                            <i class="bi bi-person-circle" style="color: blue; font-size: 3.8em;"></i>
+                            <h2 style="color:#01E1B8"> Forget Password</h2>
+                        </div>
+                    </div>
+                    <div class="row py-1 justify-content-center">
+                    <div class="small mt-2 col-md-8">Enter your email address and we will send you a link to reset your password.</div>
+                    </div>
+                    <form class="py-4" action="" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {% include 'mainweb/alert.html' %}
+                      {% if org %}
+                        <div class="row py-1 justify-content-center">
+                            <div class="col-md-8">
+                                <label for="">Email</label>
+                                <input type="email" class="form-control"  name="email">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <label for="">Password</label>
+                                <input type="text" class="form-control"  name="password">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                          <div class="col-md-8">
+                              <label for="">Confirm Password</label>
+                              <input type="text" class="form-control"  name="cpassword">
+                          </div>
+                      </div>
+                        <div class="row py-3 justify-content-center">
+                            <div class="col-md-8">
+                                <button class="btn btn-success w-100" style="background-color:#01E1B8" type="submit" name="submit" value="Reset">Reset Password</button>
+                            </div>
+                        </div>
+
+                        {% else %}
+                        <div class="row py-1 justify-content-center">
+                          <div class="col-md-8">
+                              <label for="">Email</label>
+                              <input type="email" class="form-control"  name="email">
+                          </div>
+                        </div>
+                        
+                        <div class="row py-3 justify-content-center">
+                          <div class="col-md-8">
+                              <button class="btn btn-success w-100" style="background-color:#01E1B8" type="submit" name="submit" value="send">Send Mail</button>
+                          </div>
+                        </div>
+
+                        {% endif %}
+
+                        <div class="row py-2 justify-content-center">
+                          <div class="col-md-8 justify-content-center text-center">
+                              <label>Need an account? </label>
+                              <a href="/Organizer/org_register"
+                                  style="text-decoration: none">Sign up!</a>
+                          </div>
+                        </div>
+                        <div class="row py-2 justify-content-center">
+                          <div class="col-md-8 justify-content-center text-center">
+                          <a class="large" href="/Organizer/org_login">Return to Login</a>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- Jumbotron -->
+    </section>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+{% extends "org/orgAdmin.html" %}
+{% load static %}
+{% block title %} Organization Images {% endblock %} 
+{% block stylesheets %}
+<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css" />
+<link href=" https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+<!--boostrap icons-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Custom styles for this template -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+<link href="{% static 'css/style-starter.css' %}" rel="stylesheet" />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" />
+<!-- Latest compiled and minified CSS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<style>
+
+        .content {
+          display: none;
+        }
+</style>
+{% endblock stylesheets %}
+{% block js %}
+<script>
+    function fileValidation() {
+      var fileInput = document.getElementById('file')
+    
+      var filePath = fileInput.value
+      // Allowing file type
+      var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i
+    
+      if (!allowedExtensions.exec(filePath)) {
+        alert('Invalid file type send only image file')
+        fileInput.value = ''
+        return false
+      } else {
+        // Image preview
+        if (fileInput.files && fileInput.files[0]) {
+          var reader = new FileReader()
+          reader.onload = function (e) {
+            document.getElementById('imagePreview').innerHTML = '<img src="' + e.target.result + '"/>'
+          }
+          reader.readAsDataURL(fileInput.files[0])
+        }
+      }
+    }
+  </script> 
+  
+{% endblock js %}
+
+{% block nav %}
+          <nav class="navbar navbar-expand-lg navbar-light bg-white topbar mb-4 static-top shadow">
+            <a class="navbar-brand m-2" href="/" >
+              <img src="{% static 'images/loga1.png' %}" width="80px" height="40px"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                  <a class="nav-link" href="#">Home </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/Organizer/organization">Organization images</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Who Viewed ?</a>
+                </li>
+               
+              </ul>
+              <!-- Topbar Search -->
+              <form class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                  <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button"><i class="fas fa-search fa-sm"></i></button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - User Information -->
+            
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <span class="label label-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-lg mr-2 mb-4 text-secondary-emphasis"> {{user.username}}</i> </span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="/Organizer/org_profile/{{user.id}}"><i class="fas fa-user fa-lg mr-2 "> Edit Profile</i></a></li>
+                        <li><a href="#"><i class="fas fa-user fa-lg mr-2"> Create Album</i></a></li>
+                        <li><a href="/Organizer/org_forgetPass/{{user.id}}"><i class="fas fa-user fa-lg mr-2"> Change Password</i></a></li>
+                    </ul>
+                </li>
+                <li class="text-dark">&nbsp; | &nbsp;</li>
+                <li>
+                    <a id="lnkLogOut" href=""><i class="fas fa-sign-out-alt fa-lg mr-2 mb-4 text-success-emphasis">Log-out</i></a>
+                </li>
+            </ul>
+              <!-- Topbar Navbar -->
+            </div>
+          </nav>
+{% endblock nav %}
+
+{% block content %}
+    <div class="container p-4" style="background-color: white;">
+      <div class="row justify-content-center">
+          <div class="col-lg-7">
+              <div class="card rounded-lg mt-5" style="box-shadow: rgba(0, 0, 0, 0.20) 0px 1px 4px;">
+                  <div class="card-header"><h3 class="text-center font-weight-light my-4">
+                    <img src="{% static 'images/loga1.png' %}" width="400px" height="110px" class="img-responsive"></div>
+                  <div class="card-body">
+                    <form class="form" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'mainweb/alert.html' %}
+                
+                        <div class="form-group first">
+                          <label for="Image">Organization Image Upload hear.. </label>
+                          <input type="file" name="or_img" class="form-control" placeholder="Organization Image" id="file" onchange="return fileValidation()" />
+                        </div>
+                        <div class="form-group first">
+                          <label for="Image">Organizer ID : &nbsp; {{uid.id}}</label>
+                          {% if uid %}
+                          <input type="text" readonly="readonly" name="org" value="{{uid.id}}" id="file" class="form-control"/>
+                          {% endif %}
+                        </div>
+      
+                        <input type="submit" name="submit" value="save" class="d-grid btn btn-success btn-block text-decoration-none"  style="background-color:#01E1B8" />
+                        
+                      </form>
+                  </div>
+                  <div class="card-footer text-center py-3">
+                      <div class="small"><a href="#">Welcome Back..!</a></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+         
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<!-- Bootstrap core JavaScript -->
+<!-- Page level custom scripts -->
+<script src="{% static "js/script.js" %}"></script>
+<script src="{% static "js/particles.min.js.js" %}"></script>
+<script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+
+<script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+<script src="{% static "js/owl.carousel.js" %}"></script>
+<script src="{% static "js/owl.carousel.min.js" %}"></script>
+<script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+{% endblock javascripts %}

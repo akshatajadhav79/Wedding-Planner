@@ -1,0 +1,69 @@
+{% extends 'admin/host_admin.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="">
+      <h1 class="text-center" style="color: #01E1B8;">Create Category</h1>
+      <form class="form m-2" action="" method="POST">
+        {% csrf_token %}
+        {% include 'mainweb/alert.html' %}
+
+        {% if cat_name %}
+          <div class="col-md-12 m-2">
+            <input type="text" value="{{ cat_name }}" class="form-control" name="cat_name" placeholder=" New Category " />
+          </div>
+
+          <div class="col-md-12 m-2">
+            <div class="justify-content-center ml-auto">
+              <input type="hidden" name="id" value="{{id}}">
+              <input type="submit" value="update" name="submit" class="btn btn-success" />
+              <input type="submit" value="cancel" name="submit" class="btn btn-danger" />
+            </div>
+          </div>
+        {% else %}
+          <div class="col-md-12 m-2">
+            <input type="text" class="form-control" name="cat_name" placeholder="Category " />
+          </div>
+
+          <div class="col-md-12 m-2">
+            <div class="justify-content-center ml-auto">
+              <input type="submit" value="save" name="submit" class="btn btn-success" />
+              <input type="submit" value="cancel" name="submit" class="btn btn-danger" />
+            </div>
+          </div>
+        {% endif %}
+      </form>
+
+      <table class="table mt-5 table-hover table-bordered table-sm text-center">
+        <thead>
+          <tr>
+            <th>s.no</th>
+            <th>Category Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if Category %}
+            {% for v in Category %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ v.cat_name }}</td>
+                <td class="btn-group me-2">
+                  <form action="" method="post">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="id" value="{{ v.id }}" />
+                    <button type="submit" value="Edit" name="submit" class="btn btn-outline-secondary"  style="color:green; font-size: 1.2em; border:none; background-color: white;"><i class="bi bi-pen-fill"></i></button>
+
+                    <input type="hidden" name="id" value="{{ v.id }}" />
+                    <button type="submit" value="delete" name="submit" class="btn btn-outline-secondary" style="color:red; font-size: 1.2em; border:none; background-color: white;"><i class="bi bi-trash3-fill"></i></button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

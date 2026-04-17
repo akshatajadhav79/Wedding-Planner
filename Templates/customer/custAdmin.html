@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    
+    <title>{% block title %} Dashboard {% endblock %} </title>
+
+    <!-- Specific Page CSS goes HERE  -->
+
+
+<!--boostrap icons-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link href="{% static "vendor/fontawesome-free/css/all.min.css" %}" rel="stylesheet" type="text/css" />
+<!-- Custom styles for this template -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet" />
+<link href="{% static "css/bootstrap.css" %}" rel="stylesheet" />
+<link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet" />
+<link href="{% static 'css/style-starter.css' %}" rel="stylesheet" />
+<!-- Latest compiled and minified CSS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+  a{
+    text-decoration:none;
+  }
+  .w3l-footer-29-main .bottom-copies {
+  padding:1;
+}
+</style>
+{% block js %}
+{% endblock js %}
+</head>
+<body>
+  {% include "mainweb/alert.html" %}
+  <script src="{% static "js/jquery-3.3.1.min.js"%}" ></script> <!-- Common jquery plugin -->
+  <!--bootstrap working-->
+  <script src="{% static "js/bootstrap.min.js"%}" ></script>
+       <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow">
+            <a class="navbar-brand" href="/">
+              <img class="img-fluid" src="{% static 'images/loga1.png' %}" alt="" width="80px" height="40px" class="img-responsive">
+              <h6 class="text-capitalize text-wrap text-light embed-responsive" style=" color: #01E1B8;"><strong>WED</strong>Planpro</h6>
+            </a>
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3"><i class="fa fa-bars"></i></button>
+            
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+               
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item mt-3">
+              <form class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                  <input type="text" class="form-control bg-light border-0 small"  placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                  <div class="input-group-append">
+                    <button class="btn" type="button" style="background-color:#01E1B8" ><i class="fas fa-search fa-sm" ></i></button>
+                  </div>
+                </div> 
+              </form>
+              </li>
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow mt-0">
+                <button class="btn p-0 fw-normal text-end d-flex align-items-center " id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" role="button">
+                  <div class="me-3">
+                    <p class="mb-0 small text-white">{{uid.username}}</p>
+                    <p class="mb-0 small text-secondary-light">Customer</p>
+                  </div>
+                  <div class="me-2">
+                    <img class="img-fluid rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" src="/assets/{{uid.profile_image}}" alt="">
+                  </div>
+                  <span>
+                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.0833 7.66675C13.75 7.33341 13.25 7.33341 12.9166 7.66675L9.99996 10.5834L7.08329 7.66675C6.74996 7.33341 6.24996 7.33341 5.91663 7.66675C5.58329 8.00008 5.58329 8.50008 5.91663 8.83342L9.41663 12.3334C9.58329 12.5001 9.74996 12.5834 9.99996 12.5834C10.25 12.5834 10.4166 12.5001 10.5833 12.3334L14.0833 8.83342C14.4166 8.50008 14.4166 8.00008 14.0833 7.66675Z" fill="#526172"></path>
+                    </svg>
+                  </span>
+                </a>
+                </button>
+                <div class="dropdown-menu bg-dark text-light text-center" style="background-color:#01E1B8" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" style="color:#01E1B8" href="/Customer/custadmin">Home</a>
+                  <div class="dropdown-divider" style="background-color:#fff"></div>
+                  <a class="dropdown-item" style="color:#01E1B8" href="/Customer/profile">Profile</a>
+                  <div class="dropdown-divider" style="background-color:#fff"></div>
+                  <a class="dropdown-item " style="color:#01E1B8" href="/Customer/Wishlist/">Wish List</a>
+                  <div class="dropdown-divider" style="background-color:#fff"></div>
+                  <a class="dropdown-item " style="color:#01E1B8" href="/Customer/cust_forgetPass/">Forget Password</a>
+                  <div class="dropdown-divider" style="background-color:#fff"></div>
+                  <a class="dropdown-item " style="color:#01E1B8" href="/Customer/cust_logout/">Logout</a>
+
+              </li>
+            </ul>
+          </nav>
+ 
+         <!-- Main Content -->
+         {% comment %} <div class="container-fluid"> {% endcomment %}
+          {% block content %}
+          
+<!--search Bar-->
+<div class="searchFilter-main" >
+  <section class="searchFormTop" style="border-color: #01E1B8;">
+      <div class="container" >
+          <div class="searchCenter">
+              <div class="refineCenter mb-3">
+                  <span class="bi bi-funnel"></span><a href="#" class="fa fa-sort-desc"></a>
+                  <span>Refine Results</span>
+              </div>
+              <form method="post" action="">
+                   {% csrf_token %}
+              <div class="searchFilter">
+                  <div class="input-box">
+                      <div class="icon icon-grid-view"></div>
+                      {% if service %}
+                      <select name="category" class="form-control">
+                        <option  value="">categories</option>
+                          {% for s in service %}
+                          <option  value="{{s.cat_name}}">{{s.cat_name}}</option>
+                          {% endfor %}
+                      </select>
+                      {% endif %}
+                  </div>
+                  <div class="input-box date">
+                      <input name="Taluka" type="text" id="txtTaluka" placeholder="Area/TalukaPlace" />
+                  </div>
+                  <div class="input-box searchlocation" >
+                    <select name="location" type="text" id="location" placeholder="Location/District" style="border:none;">
+                      <option value="0">Location/District</option>
+                        <option value="ahmednagar">Ahmednagar</option>
+                        <option value="akola">Akola</option>
+                        <option value="amravati">Amravati</option>
+                        <option value="aurangabad">Aurangabad</option>
+                        <option value="beed">Beed</option>
+                        <option value="bhandara">Bhandara</option>
+                        <option value="buldhana">Buldhana</option>
+                        <option value="chandrapur">Chandrapur</option>
+                        <option value="dhule">Dhule</option>
+                        <option value="gadchiroli">Gadchiroli</option>
+                        <option value="gondia">Gondia</option>
+                        <option value="hingoli">Hingoli</option>
+                        <option value="jalgaon">Jalgaon</option>
+                        <option value="jalna">Jalna</option>
+                        <option value="kolhapur">Kolhapur</option>
+                        <option value="latur">Latur</option>
+                        <option value="mumbai_city">Mumbai City</option>
+                        <option value="mumbai_suburban">Mumbai Suburban</option>
+                        <option value="nagpur">Nagpur</option>
+                        <option value="nanded">Nanded</option>
+                        <option value="nandurbar">Nandurbar</option>
+                        <option value="nashik">Nashik</option>
+                        <option value="osmanabad">Osmanabad</option>
+                        <option value="palghar">Palghar</option>
+                        <option value="parbhani">Parbhani</option>
+                        <option value="pune">Pune</option>
+                        <option value="raigad">Raigad</option>
+                        <option value="ratnagiri">Ratnagiri</option>
+                        <option value="sangli">Sangli</option>
+                        <option value="satara">Satara</option>
+                        <option value="sindhudurg">Sindhudurg</option>
+                        <option value="solapur">Solapur</option>
+                        <option value="thane">Thane</option>
+                        <option value="wardha">Wardha</option>
+                        <option value="washim">Washim</option>
+                        <option value="yavatmal">Yavatmal</option>
+                    </select>
+
+                  </div>
+                  <input type="hidden" name="id" value="{{s.id}}">
+                  <input type="submit" name="submit" value="Search"  class="btn btn-dark border-0  my-0" style="background-color:#01E1B8" />
+              </div>
+              </form>
+          </div>
+      </div>
+  </section>
+<!--search bar End-->
+
+  <section class="w3l-specification-6">
+      <div class="specification-layout editContent">
+          <div class="container">
+              {% if organizer %}
+              {% for o in organizer %}
+              {% if o.org_id.is_active == True %}
+              <div class="p-1 row">
+                  <div class="col-xl-12 back-image">
+                      <div class="p-1 grids-1 grids-effect row"style="padding:left=0;margin-left=0">
+                          <div class="col-xl-4  ">
+                              <img src="/assets/{{o.org_id.user_profile_image}}" width="400px" height="250px" alt="product" class="img-responsive">
+                          </div>
+                          <div class="col-xl-8 ">
+                          
+                            <a class="mb-0"><span class="fa fa-user-o" style="font-size: 30px color:#01E1B8 ;"> {{o.org_id.full_name}}</span></a>
+
+                              <h4><a href="#feature" class="title-head mb-0">{{o.category}}</a></h4>
+                              <p class="para mb-0">I am {{o.org_id.full_name}}. </p>
+                              <ul class="ml-0 p-0">
+                                  <li>Email Address: {{o.org_id.email}}</li>
+                                  <li> Contact Number: {{o.org_id.phone_number}}</li>
+                                  <li>Organization Name: {{o.organization_name}}</li>
+                                  <li>I know languages: {{o.languages}} </li>
+                                  <li> Address : {{o.org_id.address}}</li>
+                                  <li>Description: {{o.Description}}</li>
+                                  <form action="" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="cid" value="{{uid.id}}">
+                                    <input type="hidden" name="oid" value="{{o.org_id.id}}">
+                                    <button type="submit" name="submit" value="view" class="btn btn-outline-dark" >More</button>
+                                  </form>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+              {% else %}
+              <h3> NO Results Found </h3>
+          {% endif %}
+          </div>
+      </div>     
+  </section>
+
+<!-- move top -->
+  <button onclick="topFunction()" id="movetop" title="Go to top">
+      <span class="fa fa-long-arrow-up"></span>
+  </button>
+          {% endblock %}
+        </div>
+      <!-- End Content -->
+    
+      <!-- Logout Modal -->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" href="/Organizer/Org_logout/">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+
+      <section class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container">
+                <div class="row footer-top-29">
+                    <div class="col-lg-5 col-md-5 col-sm-6 footer-list-29 footer-1">
+                        <div class="left-side">
+                            <h2><a href="/" class="footer-logo"><strong>WED</strong>Planpro</a></h2>
+                            <p class="para">Each and every event as her own perspective collborate nature. That will makes happy the people and touch the <br>glow and smile with heartly </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 footer-list-29 footer-2 ">
+
+                        <ul>
+                            <h6 class="footer-title-29">Useful Links</h6>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/service">Services</a></li>
+                            <li><a href="/Contact">Contact us</a></li>
+                            <li><a href="/adminLogin">Admin Login</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 footer-list-29 footer-3">
+                        <h6 class="footer-title-29">Latest from blog</h6>
+                        <div class="footer-post mb-3">
+                            <a href="/">
+                                <img src="{% static "images/wedding.jpeg" class="img-responsive" alt="" %}" ></a>
+                            <div>
+                                <a href="#page">Decorate on this way</a>
+                                <p class="small"><span class="fa fa-clock-o"></span> March 9, 2023</p>
+                            </div>
+                        </div>
+                        <div class="footer-post">
+                            <a href="/">
+                                <img src="{% static "images/wedding1.jpeg" class="img-responsive" alt="" %}"  >
+                            </a>
+                            <div>
+                                <a href="/">Decorate on this way</a>
+                                <p class="small"><span class="fa fa-clock-o"></span> March 9, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class=" bottom-copies text-center">
+                <p class="copy-footer-29">2024 WEDPlanpro. All rights reserved | Designed by SGM Students
+                    <!-- <a href="https://w3layouts.com">W3layouts</a> -->
+                    </p>
+            </div>
+        </div>
+    </section>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top" style="background-color: #01E1B8;">
+        <span class="fa fa-long-arrow-up" ></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- /move top -->
+
+    <script src="{% static "js/script.js" %}"></script>
+    <script src="{% static "js/particles.min.js.js" %}"></script>
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    
+    <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    
+    <script src="{% static "js/owl.carousel.js" %}"></script>
+    <script src="{% static "js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <!-- Core plugin JavaScript -->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <!-- Custom scripts for all pages -->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

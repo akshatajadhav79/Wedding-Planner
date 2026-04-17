@@ -1,0 +1,369 @@
+{% extends "org/orgAdmin.html" %}
+{% load static %}
+{% block title %} Organizer Profile {% endblock %} 
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function fileValidation() {
+      var fileInput = document.getElementById('file')
+    
+      var filePath = fileInput.value
+      // Allowing file type
+      var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i
+    
+      if (!allowedExtensions.exec(filePath)) {
+        alert('Invalid file type send only image file')
+        fileInput.value = ''
+        return false
+      } else {
+        // Image preview
+        if (fileInput.files && fileInput.files[0]) {
+          var reader = new FileReader()
+          reader.onload = function (e) {
+            document.getElementById('imagePreview').innerHTML = '<img src="' + e.target.result + '"/>'
+          }
+          reader.readAsDataURL(fileInput.files[0])
+        }
+      }
+    }
+    
+  </script>
+  <script>
+    function displaySweetAlert() {
+        Swal.fire({
+            title: 'Success!',
+            text: 'Form updated successfully.',
+            icon: 'success',
+            showConfirmButton:false,
+            timer: 3000,
+            animationDuration: 1000,
+            customClass: {
+              popup: 'custom-popup-class' // Add a custom class to the popup
+          }
+            
+        });
+    }
+</script>
+  
+{% endblock js %}   
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class=""  style="color:#01E1B8" >Basic Details</h1>
+          <hr>
+          <form class="form" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'mainweb/alert.html' %}
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="container col-md-12">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Profile ID</label>
+                        <input  value="{{user.id}}" name="org_id" type="text" readonly="readonly" class="form-control" Placeholder="Reg.No" Required />
+                    </div>
+                    <div class="col-md-5">
+                        <label>Full Name</label>
+                        <input value="{{user.full_name}}" name="full_name" type="text"  class="form-control" Placeholder="Full Name" Required  />
+                    </div>
+                    <div class="col-md-5">
+                        <label>Organization Name</label>
+                        <input name="organization_name" value="{{orgid.organization_name}}" placeholder="Organization Name" type="text"  class="form-control"   />
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label class="form-label">Role</label>
+                    <input  value="{{user.role}}" name="role" type="text" readonly="readonly" class="form-control" Placeholder="Reg.No"  />
+                  </div>
+                    <div class="col-md-10">
+                        <label>Address</label>
+                        <input type="text" value="{{user.address}}" class="form-control" name="address" placeholder="Address "Required />
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-4">
+                      <label>Identification </label>
+                      <input type="file" class="form-control" value="{{orgid.identification}}"  name="identification" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>NOC </label>
+                        <input type="file" class="form-control"  name="NOC"  />
+
+                    </div>
+                    <div class="col-md-4">
+                        <label>Profile Pic</label>
+                        <input type="file" name="user_profile_image" value="{{user.user_profile_image}}" class="form-control" placeholder="Profile Image" id="file" onchange="return fileValidation()"   />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="{{user.email}}" readonly="readonly" name="email" Placeholder="E-Mail"  Required />
+                    </div>
+                    <div class="col-md-6">
+                      <label>Username</label>
+                      <input name="username" value="{{user.username}}" type="text" readonly="readonly" class="form-control" placeholder="Username"  Required />
+                      <span style="visibility:hidden;">Please Enter Valid Url</span>
+                  </div>
+                </div>
+                <div class="row">
+                  
+                  <div class="col-md-4">
+                    <label> Mobile</label>
+                    <input type="number" class="form-control" value="{{user.phone_number}}"  name="phone_number"  Placeholder="Mobile Number"Required  />
+
+                </div>
+                    <div class="col-md-4">
+                        <label>Facebook Url</label>
+                        <input name="ctl00$ContentPlaceHolder1$txtFbUrl" type="text" id="ContentPlaceHolder1_txtFbUrl" class="form-control" placeholder="Facebook: https://www.facebook.com/abc2024" />
+                        <span id="ContentPlaceHolder1_RegularExpressionValidator2" style="visibility:hidden;">Please Enter Valid Url</span>
+                    </div>
+                    <div class="col-md-4">
+                      <label>Web Site </label>
+                      <input name="ctl00$ContentPlaceHolder1$txtwebUrl" type="text" id="ContentPlaceHolder1_txtwebUrl" class="form-control" Placeholder="http://www.abcline.com" />
+                       <span id="ContentPlaceHolder1_RegularExpressionValidator3" style="visibility:hidden;">Please Enter Valid Url</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                      <label class="form-label">category Type:</label>
+                      <select class="form-control" name="category" style="font-size: small;" Required>
+                        <option value="0">--------</option>
+                        {% if ct %}
+                          {% for s in ct %}
+                            <option value="{{ s.id }}">{{ s.cat_name }} {{s.id}}</option>
+                          {% endfor %}
+                        {% endif %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label> Known Languages </label>
+                        <div class="row">
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Marathi">
+                              <label class="form-check-label">Marathi</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="English">
+                              <label class="form-check-label">English</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Hindi">
+                              <label class="form-check-label">Hindi</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Kannada">
+                              <label class="form-check-label">Kannada</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Tamil">
+                              <label class="form-check-label">Tamil</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Telugu">
+                              <label class="form-check-label">Telugu</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Urdu">
+                              <label class="form-check-label">Urdu</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Gujarati">
+                              <label class="form-check-label">Gujarati</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Odia">
+                              <label class="form-check-label">Odia</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Malayalam">
+                              <label class="form-check-label">Malayalam</label>
+                            </div>
+                          </div>
+                          <div class="col-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="languages" value="Punjabi">
+                              <label class="form-check-label">Punjabi</label>
+                            </div>
+                          </div>
+                         
+                        </div>
+                  
+                        <!-- Add similar checkboxes for other languages -->
+
+                     <br />
+                        <!-- Single button -->
+                        <div class="btn-group">
+
+                        </div> 
+                    </div>
+                    <div class="col-md-6">
+                        <label>Description </label>
+                        <textarea type="text" name="Description" class="form-control">{{user.Description}}</textarea>
+                    
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    .
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <input type="hidden" name="id" value="{{user.id}}">
+                                <input type="submit" name="submit" value="Update" class="btn btn-success"  style="background-color:#01E1B8" onclick="displaySweetAlert()" />
+                                <input type="hidden" name="id" value="{{user.id}}">
+                                <input type="submit" name="submit" value="Cancel" class="btn btn-success"  style="background-color:#01E1B8" />
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+
+    
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("#ContentPlaceHolder1_lblLanguages").click(function(){
+              $(".content").toggle(); // Toggle the display of elements with class 'content'
+            });
+          });
+
+          $(document).ready(function () {
+ 
+                  $('#txtState').autocomplete({
+                      source: function (request, responce) {
+ 
+                          var parm = { term: $('#txtState').val() };
+                          $.ajax({
+                              url: "AutoSuggetService.asmx/GetStates", method: "POST",
+                              contentType: "application/json;charset=utf-8",
+                              data: JSON.stringify(parm),
+                              dataType: 'json',
+                              success: function (data) {
+                                  console.log(data);
+                                  responce(data.d);
+                              },
+                              error: function (err) {
+                                  alert("myerror " + err);
+                              }
+                          });
+                      }
+                  });
+              
+ 
+              $("#txtDistrict").autocomplete({
+                  source: function (request, responce) {
+ 
+                      var parm = { term: $("#txtDistrict").val() };
+                      $.ajax({
+                          url: "AutoSuggetService.asmx/GetDistrict", method: "POST",
+                          contentType: "application/json;charset=utf-8",
+                          data: JSON.stringify(parm),
+                          dataType: 'json',
+                          success: function (data) {
+                              console.log(data);
+                              responce(data.d);
+                          },
+                          error: function (err) {
+                              alert("myerror " + err);
+                          }
+                      });
+                  }
+              });
+ 
+              $("#txtTaluka").autocomplete({
+                  source: function (request, responce) {
+ 
+                      var parm = { term: $("#txtTaluka").val() };
+                      $.ajax({
+                          url: "AutoSuggetService.asmx/GetTaluka", method: "POST",
+                          contentType: "application/json;charset=utf-8",
+                          data: JSON.stringify(parm),
+                          dataType: 'json',
+                          success: function (data) {
+                              console.log(data);
+                              responce(data.d);
+                          },
+                          error: function (err) {
+                              alert("myerror " + err);
+
+                              {% comment %} Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your work has been saved",
+                                showConfirmButton: false,
+                                timer: 1500
+                              });
+                               {% endcomment %}
+                          }
+                      });
+                  }
+              });
+          });
+         </script>
+ 
+     </div>
+ 
+             </div>
+         
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+ <!-- Bootstrap core JavaScript -->
+ <script src="{% static "js/script.js" %}"></script>
+ <script src="{% static "js/particles.min.js.js" %}"></script>
+ <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+ 
+ <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+ 
+ <script src="{% static "js/owl.carousel.js" %}"></script>
+ <script src="{% static "js/owl.carousel.min.js" %}"></script>
+ <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+ <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+ <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+ <!-- Core plugin JavaScript -->
+ <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+ <!-- Custom scripts for all pages -->
+ <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+ <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% endblock javascripts %}

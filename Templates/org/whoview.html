@@ -1,0 +1,64 @@
+{% extends "org/orgAdmin.html" %}
+{% load static %}
+{% block title %} Organizer Who View {% endblock %}    
+{% block content %}
+<h3 class="container text-center shadow mb-4 alert-primary" style=" color:black; font-weight: 900;"> Viewed List</h3>
+<div class="p-1 container">
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="text-center">Number of Customers See Profile: {{ num_customers }}</p>
+        </div>
+    </div>
+    {% for organizer in customer_view_counts %}
+    {% for c in cust %}
+    {% if c.id is organizer.customer %}
+
+    <div class="row card">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3 pt-4 pl-5">
+                    <img src="/assets/{{ c.profile_image }}" width="100px" height="100px" alt="product" class=" img-responsive rounded-circle">
+                </div>
+                <div class="col-sm-8">
+                    <a href="#"><span class="fa fa-user-o" style="font-size: 30px; color:#01E1B8;"> {{ c.full_name }}</span></a>
+                    <h4><a href="#feature" class="title-head">{{ c.category }}</a></h4>
+                    <p class="para mb-0">I am {{ c.full_name }}. </p>
+                    <ul class="ml-0 p-0">
+                        <li>Email Address: {{ c.email }}</li>
+                        <li>Contact Number: {{ c.phone_number }}</li>
+                    </ul>
+            <p>View Count: {{ organizer.view_count }}</p>
+        </div>
+    </div>
+   
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+  </div>
+</div><br>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+ <!-- Bootstrap core JavaScript -->
+ <script src="{% static "js/script.js" %}"></script>
+ <script src="{% static "js/particles.min.js.js" %}"></script>
+ <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+ 
+ <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+ 
+ <script src="{% static "js/owl.carousel.js" %}"></script>
+ <script src="{% static "js/owl.carousel.min.js" %}"></script>
+ <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+ <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+ <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+ <!-- Core plugin JavaScript -->
+ <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+ <!-- Custom scripts for all pages -->
+ <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+ <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% endblock javascripts %}
